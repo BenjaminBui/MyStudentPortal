@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CongThongTin", "CongThongTin.csproj", "{83C36F87-1BDB-40EA-A645-31226F37D564}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{46EBF369-BC0F-4404-BB0A-8FC2402BDB9F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{83C36F87-1BDB-40EA-A645-31226F37D564}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83C36F87-1BDB-40EA-A645-31226F37D564}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83C36F87-1BDB-40EA-A645-31226F37D564}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83C36F87-1BDB-40EA-A645-31226F37D564}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {65E865E6-BE87-42B7-A283-55DFE9B5282A}
+	EndGlobalSection
+EndGlobal

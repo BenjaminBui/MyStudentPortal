@@ -1,0 +1,66 @@
+ThongBao:
+	NoiDung
+	SinhVienId
+HocPhan:
+	Ten
+	MoTa
+	MaHocPhan
+	SoTinChi
+LopHocPhan:
+	HocPhanId
+	MaSoHocPhan
+	HocKyId
+	SoLuong
+SinhVien:
+	Ten
+	DiaChi
+	SDT
+	Email
+	MSSV
+	ChuongTrinhDaoTaoId
+LopHocPhanSinhVien (Mapping):
+	SinhVienId
+	LopHocPhanId
+ThoiKhoaBieu:
+	LopHocPhanId
+	NgayHoc
+	ThoiGianBatDau
+	ThoiGianKetThuc
+	GiangVienId
+ChuongTrinhDaoTao:
+	Ten
+ChuongTrinhDaoTaoHocPhan (Mapping):
+	ChuongTrinhDaoTaoId
+	HocPhanId
+Diem (Mapping):
+	SinhVienId
+	Diem
+	LopHocPhanId
+	HocPhanId
+HocKy:
+	Ten
+	ThoiGianBatDau
+	ThoiGianKetThuc
+DiemRenLuyen:
+	HocKyId
+	Diem
+HocPhi (Mapping):
+	SinhVienId
+	HocPhanId
+	HocKyId
+	DaThanhToan
+KyTucXa:
+	MaKTX
+Phong:
+	KTXId
+	SoLuong
+PhongSinhVien (Mapping):
+	PhongId
+	SinhVienId
+LichThi:
+	LopHocPhanId
+	NgayThi
+	GioBatDau
+	GioKetThuc
+GiangVien:
+	Ten

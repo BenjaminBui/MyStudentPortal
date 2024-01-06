@@ -1,3 +1,6 @@
+using CongThongTin.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace CongThongTin
 {
     public class Program
@@ -9,6 +12,9 @@ namespace CongThongTin
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
+            
+            builder.Services.AddDbContext<CongThongTinDbContext>(options => 
+            options.UseSqlServer(builder.Configuration.GetConnectionString("CongThongTinDatabase")));
 
             var app = builder.Build();
 

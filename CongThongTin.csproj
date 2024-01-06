@@ -15,4 +15,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\Migrations\" />
+    <Folder Include="Hepler\Constant\" />
+    <Folder Include="Hepler\Mapping\" />
+  </ItemGroup>
+
 </Project>

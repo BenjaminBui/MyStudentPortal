@@ -5,9 +5,13 @@ namespace CongThongTin.Data.Entities;
 [Table("PhongSinhVien")]
 public class PhongSinhVienEntity : BaseEntity
 {
-    [ForeignKey("Phong")]
     public Guid PhongId { get; set; }
+    
+    [ForeignKey("PhongId")] 
+    public virtual PhongEntity Phong { get; set; }
 
-    [ForeignKey("NguoiDung")]
     public Guid SinhVienId { get; set; }
+    
+    [ForeignKey("SinhVienId")] 
+    public virtual NguoiDungEntity NguoiDung { get; set; }
 }

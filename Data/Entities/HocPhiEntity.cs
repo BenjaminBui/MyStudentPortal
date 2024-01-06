@@ -7,12 +7,18 @@ public class HocPhiEntity : BaseEntity
 {
     public bool DaThanhToan { get; set; }
     
-    [ForeignKey("NguoiDung")] 
     public Guid SinhVienId { get; set; }
     
-    [ForeignKey("HocKy")] 
+    [ForeignKey("SinhVienId")] 
+    public virtual NguoiDungEntity NguoiDung { get; set; }
+    
     public Guid HocKyId { get; set; }
     
-    [ForeignKey("HocPhan")] 
+    [ForeignKey("HocKyId")] 
+    public virtual HocKyEntity HocKy { get; set; }
+    
     public Guid HocPhanId { get; set; }
+    
+    [ForeignKey("HocPhanId")] 
+    public virtual HocPhanEntity HocPhan { get; set; }
 }

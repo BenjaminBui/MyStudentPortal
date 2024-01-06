@@ -6,9 +6,13 @@ namespace CongThongTin.Data.Entities;
 [Table("LopHocPhanSinhVien")]
 public class LopHocPhanSinhVienEntity : BaseEntity
 {
-    [ForeignKey("NguoiDung")]
     public Guid SinhVienId { get; set; }
     
-    [ForeignKey("LopHocPhan")]
+    [ForeignKey("SinhVienId")]
+    public virtual NguoiDungEntity NguoiDung { get; set; }
+    
     public Guid LopHocPhanId { get; set; }
+    
+    [ForeignKey("LopHocPhanId")]
+    public virtual LopHocPhanEntity LopHocPhan { get; set; }
 }

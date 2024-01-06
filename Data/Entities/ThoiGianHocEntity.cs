@@ -3,7 +3,7 @@
 namespace CongThongTin.Data.Entities;
 
 [Table("ThoiKhoaBieu")]
-public class ThoiKhoaBieuEntity : BaseEntity
+public class ThoiGianHocEntity : BaseEntity
 {
     public DateTime NgayHoc { get; set; }
     
@@ -11,9 +11,13 @@ public class ThoiKhoaBieuEntity : BaseEntity
     
     public DateTime ThoiGianKetThuc { get; set; }
     
-    [ForeignKey("NguoiDung")]
     public Guid GiangVienId  { get; set; }
     
-    [ForeignKey("LopHocPhan")]
+    [ForeignKey("GiangVienId")] 
+    public virtual NguoiDungEntity NguoiDung { get; set; }
+    
     public Guid LopHocPhanId { get; set; }
+    
+    [ForeignKey("LopHocPhanId")] 
+    public virtual LopHocPhanEntity LopHocPhan { get; set; }
 }

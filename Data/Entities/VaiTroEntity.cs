@@ -6,4 +6,10 @@ namespace CongThongTin.Data.Entities;
 public class VaiTroEntity : BaseEntity
 {
     public string Ten { get; set; }
+
+    #region Mapper Properties
+
+    public virtual ICollection<NguoiDungEntity> NguoiDungList { get; set; }
+
+    #endregion
 }

@@ -7,6 +7,8 @@ public class ThongBaoEntity : BaseEntity
 {
     public string NoiDung { get; set; }
     
-    [ForeignKey("SinhVien")]
-    public Guid SinhVienId { get; set; }
+    public Guid NguoiDungId { get; set; }
+    
+    [ForeignKey("NguoiDungId")] 
+    public virtual NguoiDungEntity NguoiDung { get; set; }
 }

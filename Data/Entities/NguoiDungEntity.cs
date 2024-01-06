@@ -19,9 +19,24 @@ public class NguoiDungEntity : BaseEntity
 
     public int GioiTinh { get; set; }
 
-    [ForeignKey("ChuongTrinhDaoTao")]
     public Guid? ChuongTrinhDaoTaoId { get; set; }
     
-    [ForeignKey("VaiTro")]
-    public Guid VaiTro { get; set; }
+    [ForeignKey("ChuongTrinhDaoTaoId")]
+    public virtual ChuongTrinhDaoTaoEntity ChuongTrinhDaoTao { get; set; }
+    
+    public Guid VaiTroId { get; set; }
+
+    [ForeignKey("VaiTroId")] 
+    public virtual VaiTroEntity VaiTro { get; set; }
+
+    #region Mapper Properties
+
+    public virtual ICollection<DiemEntity> DiemList { get; set; }
+    public virtual ICollection<HocPhiEntity> HocPhiList { get; set; }
+    public virtual ICollection<LopHocPhanSinhVienEntity> LopHocPhanSinhVienList { get; set; }
+    public virtual ICollection<PhongSinhVienEntity> PhongSinhVienList { get; set; }
+    public virtual ICollection<ThoiGianHocEntity> ThoiGianHocList { get; set; }
+    public virtual ICollection<ThongBaoEntity> ThongBaoList { get; set; }
+
+    #endregion
 }

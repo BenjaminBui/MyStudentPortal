@@ -4,19 +4,16 @@ using CongThongTin.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace CongThongTin.Migrations
+namespace CongThongTin.Data.Migrations
 {
     [DbContext(typeof(CongThongTinDbContext))]
-    [Migration("20240106153106_InitDatabase")]
-    partial class InitDatabase
+    partial class CongThongTinDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -84,39 +81,11 @@ namespace CongThongTin.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ChuongTrinhDaoTaoId");
+
+                    b.HasIndex("HocPhanId");
+
                     b.ToTable("ChuongTrinhDaoTaoHocPhan");
-                });
-
-            modelBuilder.Entity("CongThongTin.Data.Entities.DemRenLuyenEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CapNhatBoi")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CapNhatLuc")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("DaXoa")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("Diem")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("HocKyId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("TaoBoi")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("TaoLuc")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DiemRenLuyen");
                 });
 
             modelBuilder.Entity("CongThongTin.Data.Entities.DiemEntity", b =>
@@ -154,7 +123,47 @@ namespace CongThongTin.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("HocPhanId");
+
+                    b.HasIndex("LopHocPhanId");
+
+                    b.HasIndex("SinhVienId");
+
                     b.ToTable("Diem");
+                });
+
+            modelBuilder.Entity("CongThongTin.Data.Entities.DiemRenLuyenEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CapNhatBoi")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CapNhatLuc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("DaXoa")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Diem")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("HocKyId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("TaoBoi")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("TaoLuc")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HocKyId");
+
+                    b.ToTable("DiemRenLuyen");
                 });
 
             modelBuilder.Entity("CongThongTin.Data.Entities.HocKyEntity", b =>
@@ -269,6 +278,12 @@ namespace CongThongTin.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("HocKyId");
+
+                    b.HasIndex("HocPhanId");
+
+                    b.HasIndex("SinhVienId");
+
                     b.ToTable("HocPhi");
                 });
 
@@ -355,7 +370,7 @@ namespace CongThongTin.Migrations
                     b.Property<bool>("DaXoa")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("HocKyID")
+                    b.Property<Guid>("HocKyId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("HocPhanId")
@@ -375,6 +390,10 @@ namespace CongThongTin.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("HocKyId");
+
+                    b.HasIndex("HocPhanId");
 
                     b.ToTable("LopHocPhan");
                 });
@@ -407,6 +426,10 @@ namespace CongThongTin.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LopHocPhanId");
+
+                    b.HasIndex("SinhVienId");
 
                     b.ToTable("LopHocPhanSinhVien");
                 });
@@ -462,10 +485,14 @@ namespace CongThongTin.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("VaiTro")
+                    b.Property<Guid>("VaiTroId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ChuongTrinhDaoTaoId");
+
+                    b.HasIndex("VaiTroId");
 
                     b.ToTable("NguoiDung");
                 });
@@ -499,6 +526,8 @@ namespace CongThongTin.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("KTXId");
+
                     b.ToTable("Phong");
                 });
 
@@ -531,10 +560,14 @@ namespace CongThongTin.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("PhongId");
+
+                    b.HasIndex("SinhVienId");
+
                     b.ToTable("PhongSinhVien");
                 });
 
-            modelBuilder.Entity("CongThongTin.Data.Entities.ThoiKhoaBieuEntity", b =>
+            modelBuilder.Entity("CongThongTin.Data.Entities.ThoiGianHocEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -572,6 +605,10 @@ namespace CongThongTin.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("GiangVienId");
+
+                    b.HasIndex("LopHocPhanId");
+
                     b.ToTable("ThoiKhoaBieu");
                 });
 
@@ -590,12 +627,12 @@ namespace CongThongTin.Migrations
                     b.Property<bool>("DaXoa")
                         .HasColumnType("bit");
 
+                    b.Property<Guid>("NguoiDungId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("NoiDung")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("SinhVienId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("TaoBoi")
                         .HasColumnType("uniqueidentifier");
@@ -604,6 +641,8 @@ namespace CongThongTin.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("NguoiDungId");
 
                     b.ToTable("ThongBao");
                 });
@@ -636,6 +675,271 @@ namespace CongThongTin.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("VaiTro");
+                });
+
+            modelBuilder.Entity("CongThongTin.Data.Entities.ChuongTrinhDaoTaoHocPhanEntity", b =>
+                {
+                    b.HasOne("CongThongTin.Data.Entities.ChuongTrinhDaoTaoEntity", "ChuongTrinhDaoTao")
+                        .WithMany("ChuongTrinhDaoTaoHocPhanList")
+                        .HasForeignKey("ChuongTrinhDaoTaoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CongThongTin.Data.Entities.HocPhanEntity", "HocPhan")
+                        .WithMany("ChuongTrinhDaoTaoHocPhanList")
+                        .HasForeignKey("HocPhanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ChuongTrinhDaoTao");
+
+                    b.Navigation("HocPhan");
+                });
+
+            modelBuilder.Entity("CongThongTin.Data.Entities.DiemEntity", b =>
+                {
+                    b.HasOne("CongThongTin.Data.Entities.HocPhanEntity", "HocPhan")
+                        .WithMany("DiemList")
+                        .HasForeignKey("HocPhanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CongThongTin.Data.Entities.LopHocPhanEntity", "LopHocPhan")
+                        .WithMany("DiemList")
+                        .HasForeignKey("LopHocPhanId")
+                        .IsRequired();
+
+                    b.HasOne("CongThongTin.Data.Entities.NguoiDungEntity", "NguoiDung")
+                        .WithMany("DiemList")
+                        .HasForeignKey("SinhVienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("HocPhan");
+
+                    b.Navigation("LopHocPhan");
+
+                    b.Navigation("NguoiDung");
+                });
+
+            modelBuilder.Entity("CongThongTin.Data.Entities.DiemRenLuyenEntity", b =>
+                {
+                    b.HasOne("CongThongTin.Data.Entities.HocKyEntity", "HocKy")
+                        .WithMany("DiemRenLuyenList")
+                        .HasForeignKey("HocKyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("HocKy");
+                });
+
+            modelBuilder.Entity("CongThongTin.Data.Entities.HocPhiEntity", b =>
+                {
+                    b.HasOne("CongThongTin.Data.Entities.HocKyEntity", "HocKy")
+                        .WithMany("HocPhiList")
+                        .HasForeignKey("HocKyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CongThongTin.Data.Entities.HocPhanEntity", "HocPhan")
+                        .WithMany("HocPhiList")
+                        .HasForeignKey("HocPhanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CongThongTin.Data.Entities.NguoiDungEntity", "NguoiDung")
+                        .WithMany("HocPhiList")
+                        .HasForeignKey("SinhVienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("HocKy");
+
+                    b.Navigation("HocPhan");
+
+                    b.Navigation("NguoiDung");
+                });
+
+            modelBuilder.Entity("CongThongTin.Data.Entities.LopHocPhanEntity", b =>
+                {
+                    b.HasOne("CongThongTin.Data.Entities.HocKyEntity", "HocKy")
+                        .WithMany("LopHocPhanList")
+                        .HasForeignKey("HocKyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CongThongTin.Data.Entities.HocPhanEntity", "HocPhan")
+                        .WithMany("LopHocPhanList")
+                        .HasForeignKey("HocPhanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("HocKy");
+
+                    b.Navigation("HocPhan");
+                });
+
+            modelBuilder.Entity("CongThongTin.Data.Entities.LopHocPhanSinhVienEntity", b =>
+                {
+                    b.HasOne("CongThongTin.Data.Entities.LopHocPhanEntity", "LopHocPhan")
+                        .WithMany("LopHocPhanSinhVienList")
+                        .HasForeignKey("LopHocPhanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CongThongTin.Data.Entities.NguoiDungEntity", "NguoiDung")
+                        .WithMany("LopHocPhanSinhVienList")
+                        .HasForeignKey("SinhVienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("LopHocPhan");
+
+                    b.Navigation("NguoiDung");
+                });
+
+            modelBuilder.Entity("CongThongTin.Data.Entities.NguoiDungEntity", b =>
+                {
+                    b.HasOne("CongThongTin.Data.Entities.ChuongTrinhDaoTaoEntity", "ChuongTrinhDaoTao")
+                        .WithMany("NguoiDungList")
+                        .HasForeignKey("ChuongTrinhDaoTaoId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CongThongTin.Data.Entities.VaiTroEntity", "VaiTro")
+                        .WithMany("NguoiDungList")
+                        .HasForeignKey("VaiTroId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ChuongTrinhDaoTao");
+
+                    b.Navigation("VaiTro");
+                });
+
+            modelBuilder.Entity("CongThongTin.Data.Entities.PhongEntity", b =>
+                {
+                    b.HasOne("CongThongTin.Data.Entities.KyTucXaEntity", "KyTucXa")
+                        .WithMany("PhongList")
+                        .HasForeignKey("KTXId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("KyTucXa");
+                });
+
+            modelBuilder.Entity("CongThongTin.Data.Entities.PhongSinhVienEntity", b =>
+                {
+                    b.HasOne("CongThongTin.Data.Entities.PhongEntity", "Phong")
+                        .WithMany("PhongSinhVienList")
+                        .HasForeignKey("PhongId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CongThongTin.Data.Entities.NguoiDungEntity", "NguoiDung")
+                        .WithMany("PhongSinhVienList")
+                        .HasForeignKey("SinhVienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("NguoiDung");
+
+                    b.Navigation("Phong");
+                });
+
+            modelBuilder.Entity("CongThongTin.Data.Entities.ThoiGianHocEntity", b =>
+                {
+                    b.HasOne("CongThongTin.Data.Entities.NguoiDungEntity", "NguoiDung")
+                        .WithMany("ThoiGianHocList")
+                        .HasForeignKey("GiangVienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CongThongTin.Data.Entities.LopHocPhanEntity", "LopHocPhan")
+                        .WithMany("ThoiGianHocList")
+                        .HasForeignKey("LopHocPhanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("LopHocPhan");
+
+                    b.Navigation("NguoiDung");
+                });
+
+            modelBuilder.Entity("CongThongTin.Data.Entities.ThongBaoEntity", b =>
+                {
+                    b.HasOne("CongThongTin.Data.Entities.NguoiDungEntity", "NguoiDung")
+                        .WithMany("ThongBaoList")
+                        .HasForeignKey("NguoiDungId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("NguoiDung");
+                });
+
+            modelBuilder.Entity("CongThongTin.Data.Entities.ChuongTrinhDaoTaoEntity", b =>
+                {
+                    b.Navigation("ChuongTrinhDaoTaoHocPhanList");
+
+                    b.Navigation("NguoiDungList");
+                });
+
+            modelBuilder.Entity("CongThongTin.Data.Entities.HocKyEntity", b =>
+                {
+                    b.Navigation("DiemRenLuyenList");
+
+                    b.Navigation("HocPhiList");
+
+                    b.Navigation("LopHocPhanList");
+                });
+
+            modelBuilder.Entity("CongThongTin.Data.Entities.HocPhanEntity", b =>
+                {
+                    b.Navigation("ChuongTrinhDaoTaoHocPhanList");
+
+                    b.Navigation("DiemList");
+
+                    b.Navigation("HocPhiList");
+
+                    b.Navigation("LopHocPhanList");
+                });
+
+            modelBuilder.Entity("CongThongTin.Data.Entities.KyTucXaEntity", b =>
+                {
+                    b.Navigation("PhongList");
+                });
+
+            modelBuilder.Entity("CongThongTin.Data.Entities.LopHocPhanEntity", b =>
+                {
+                    b.Navigation("DiemList");
+
+                    b.Navigation("LopHocPhanSinhVienList");
+
+                    b.Navigation("ThoiGianHocList");
+                });
+
+            modelBuilder.Entity("CongThongTin.Data.Entities.NguoiDungEntity", b =>
+                {
+                    b.Navigation("DiemList");
+
+                    b.Navigation("HocPhiList");
+
+                    b.Navigation("LopHocPhanSinhVienList");
+
+                    b.Navigation("PhongSinhVienList");
+
+                    b.Navigation("ThoiGianHocList");
+
+                    b.Navigation("ThongBaoList");
+                });
+
+            modelBuilder.Entity("CongThongTin.Data.Entities.PhongEntity", b =>
+                {
+                    b.Navigation("PhongSinhVienList");
+                });
+
+            modelBuilder.Entity("CongThongTin.Data.Entities.VaiTroEntity", b =>
+                {
+                    b.Navigation("NguoiDungList");
                 });
 #pragma warning restore 612, 618
         }

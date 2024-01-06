@@ -7,6 +7,14 @@ public class PhongEntity : BaseEntity
 {
     public int SoLuongSinhVien { get; set; }
 
-    [ForeignKey("KyTucXa")]
     public Guid KTXId { get; set; }
+
+    [ForeignKey("KTXId")] 
+    public virtual KyTucXaEntity KyTucXa { get; set; }
+
+    #region Mapper Properties
+
+    public virtual ICollection<PhongSinhVienEntity> PhongSinhVienList { get; set; }
+
+    #endregion
 }

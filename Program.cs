@@ -13,8 +13,17 @@ namespace CongThongTin
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
             
-            builder.Services.AddDbContext<CongThongTinDbContext>(options => 
-            options.UseSqlServer(builder.Configuration.GetConnectionString("CongThongTinDatabase")));
+            // builder.Services.AddDbContext<CongThongTinDbContext>(options => 
+            // options.UseSqlServer(builder.Configuration.GetConnectionString("CongThongTinDatabase")));
+            
+            var connectionString = builder.Configuration.GetConnectionString("CongThongTinDatabase") ??
+                                   throw new InvalidOperationException("Connection string 'CongThongTinDatabase' not found.");
+            
+            builder.Services.AddDbContext<CongThongTinDbContext>(
+                options => options.UseSqlServer(
+                    connectionString,
+                    sqlBuilder => { sqlBuilder.MigrationsAssembly(typeof(CongThongTinDbContext).Assembly.GetName().Name); }
+                ));
 
             var app = builder.Build();
 

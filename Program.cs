@@ -1,4 +1,6 @@
+using AutoMapper;
 using CongThongTin.Data;
+using CongThongTin.Hepler.Mapping;
 using Microsoft.EntityFrameworkCore;
 
 namespace CongThongTin
@@ -13,6 +15,15 @@ namespace CongThongTin
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
             
+            //Add custom auto mapper config
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+            
+            IMapper mapper = mapperConfig.CreateMapper();
+            builder.Services.AddSingleton(mapper);
+            
             // builder.Services.AddDbContext<CongThongTinDbContext>(options => 
             // options.UseSqlServer(builder.Configuration.GetConnectionString("CongThongTinDatabase")));
             
@@ -24,7 +35,7 @@ namespace CongThongTin
                     connectionString,
                     sqlBuilder => { sqlBuilder.MigrationsAssembly(typeof(CongThongTinDbContext).Assembly.GetName().Name); }
                 ));
-
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -44,7 +55,7 @@ namespace CongThongTin
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Auth}/{action=Login}/{id?}");
             app.MapRazorPages();
             
             app.Run();
